@@ -29,9 +29,9 @@ def index(request):
         }     
         return Response(people_details)
     
-@api_view(['GET','POST',])
+@api_view(['GET','POST'])
 def people(request):
-    if request.GET:
+    if request.method == 'GET':
         objs = person.objects.all()
         serializer = Peopleserializer(objs,many=True)
         return Response(serializer.data)
@@ -40,4 +40,5 @@ def people(request):
         serializer=Peopleserializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return 
+            return Response(serializer.data)
+        return Response(request,serializer.errors)
