@@ -8,11 +8,14 @@ def index(request):
     if request.method == "POST":
         email=request.POST.get("email")
         password=request.POST.get("password")
-        user=authenticate(request,email=email,password=password)
-        if user is not None:
+        userobj=user.objects.get()
+        
+        userddd=authenticate(email=email,password=password)
+        print(userddd)
+        if userddd is not None:
             login(request,user)
             print("hai")
-            return redirect(request,'lgin.html')
+            return render(request,'lgin.html')
         else:
 
             return render(request,'index.html')
