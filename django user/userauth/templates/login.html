@@ -15,8 +15,22 @@
 </head>
 <body>
     <div class="container" id="container">
-       
-        
+		<div class="form-container signin-container">
+			<form action="#" method="post">
+				{% csrf_token %}
+				<h1>Sign In</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span>
+				<input type="text" placeholder="username" name="username"/>
+				<input type="password" placeholder="Password" name="password"/>
+				<a href="#" class="forgot">Forgot your Password</a>
+				<a href="{% url 'userlogin' %}"><button>Sign In</button></a>
+			</form>
+		</div>
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-left">
@@ -25,11 +39,9 @@
 					<a href=""><button class="over-btn" id="signin">Sign In</button></a>
 				</div>
 				<div class="overlay-panel overlay-right">
-					{% if user %}
-					<h1>Hello, {{ user.username}}</h1>
-					{% endif %}
-					<p>you are successfull logged in</p>
-					<a href="{% url 'logout' %}"><button class="over-btn" id="signup">logout</button></a>
+					<h1>Hello, there</h1>
+					<p>To join us please enter your personal details</p>
+					<a href="{% url 'createuser' %}"><button class="over-btn" id="signup">Sign Up</button></a>
 				</div>
 			</div>
 		</div>

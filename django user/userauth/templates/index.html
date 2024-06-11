@@ -2,50 +2,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="{% static 'js/script.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
-	<title>UI Project</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="{% static 'css/success.css' %}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 </head>
-<body>
-    <div class="container" id="container">
-		<div class="form-container signin-container">
-			<form action="#" method="post">
-				{% csrf_token %}
-				<h1>Sign In</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+<body class="bg-dark">
+	
+		<div id="tsparticles"></div>
+		<section>
+			
+		  <div class="content">
+			<H1>NOMAD NAVIGATORS</H1>
+			{% if user %}
+			<h1> {{user.username}}  Let's Travel The World Together!</h1>
+			{% endif %}
+			<p>
+			  Our tours are designed to transport you to the heart of the world's
+			  most captivating destinations, creating memories that will last a
+			  lifetime. You can uncover the hidden gems, iconic landmarks, and
+			  unique cultural treasures that make each destination special.
+			</p>
+			<button>Explore Tours</button>
+			<a href="{% url 'logout' %}"><button class="btn btn-danger">logout</button></a>
+		  </div>
+	
+		  <div class="swiper">
+			<div class="swiper-wrapper">
+			  <div class="swiper-slide">
+				<img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/49db1b5f-09f6-4433-be57-51687585600c" />
+				<div class="cost">from $230 per group</div>
+				<div class="overlay">
+				  <h1>Walking Tour in Florence</h1>
+				  <p>
+					Discover the fascinating beauty of this historic city by
+					strolling through the rich cultural tapestry that makes Florence
+					a timeless destination.
+				  </p>
+				  <div class="ratings">
+					<div class="stars">
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star-half-outline"></ion-icon>
+					</div>
+					<span>138 reviews</span>
+				  </div>
 				</div>
-				<span>or use your account</span>
-				<input type="text" placeholder="username" name="username"/>
-				<input type="password" placeholder="Password" name="password"/>
-				<a href="#" class="forgot">Forgot your Password</a>
-				<a href="{% url 'index' %}"><button>Sign In</button></a>
-			</form>
-		</div>
-		<div class="overlay-container">
-			<div class="overlay">
-				<div class="overlay-panel overlay-left">
-					<h1>Welcome Back!</h1>
-					<p>To keep connected with us please log in with your account</p>
-					<a href=""><button class="over-btn" id="signin">Sign In</button></a>
+			  </div>
+			  <div class="swiper-slide">
+				<img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/2d165721-fe2e-4cf0-a63e-20bc5bc3f847" />
+				<div class="cost">from $380 per group</div>
+				<div class="overlay">
+				  <h1>Edinburgh Guided Tour</h1>
+				  <p>
+					Explore the city's majestic castles and fascinating history by
+					joining our guided tour for an unforgettable journey through
+					Scotland's capital.
+				  </p>
+				  <div class="ratings">
+					<div class="stars">
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					</div>
+					<span>307 reviews</span>
+				  </div>
 				</div>
-				<div class="overlay-panel overlay-right">
-					<h1>Hello, there</h1>
-					<p>To join us please enter your personal details</p>
-					<a href="{% url 'loginin' %}"><button class="over-btn" id="signup">Sign Up</button></a>
+			  </div>
+			  <div class="swiper-slide">
+				<img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d311d1de-7382-4c03-b083-5f7e88458158" />
+				<div class="cost dark-text">from $99 per adult</div>
+				<div class="overlay">
+				  <h1>New York Sightseeing Tour</h1>
+				  <p>
+					Experience the energy and excitement of New York City from Times
+					Square's dazzling lights to the serene beauty of Central Park.
+				  </p>
+				  <div class="ratings">
+					<div class="stars">
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star-half-outline"></ion-icon>
+					</div>
+					<span>1152 reviews</span>
+				  </div>
 				</div>
+			  </div>
+			  <div class="swiper-slide">
+				<img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/be223a30-52d1-4a0b-8d57-2e52f02e2245" />
+				<div class="cost dark-text">from $117 per adult</div>
+				<div class="overlay">
+				  <h1>Japan Panoramic Tours</h1>
+				  <p>
+					Embark on a magical journey through Tokyo by discovering the
+					beauty of the city as cherry blossom trees paint the streets in
+					hues of pink.
+				  </p>
+				  <div class="ratings">
+					<div class="stars">
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star"></ion-icon>
+					  <ion-icon class="star" name="star-outline"></ion-icon>
+					</div>
+					<span>619 reviews</span>
+				  </div>
+				</div>
+			  </div>
 			</div>
-		</div>
-	</div>
-	<script src="{% static 'js/script.js' %}"></script>
+		  </div>
+		</section>
+		<script src="{% static 'js/success.js' %}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 </body>
 </html>
