@@ -10,7 +10,7 @@ def index(request):
         user=authenticate(username=username,password=password)
         if user is not None:
             login(request,user)  
-            return render(request,"success.html")
+            return render(request,"success.html",{"user":user})
         else:
             return redirect ('index')
     return render(request,"index.html")    

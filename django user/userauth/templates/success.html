@@ -25,7 +25,9 @@
 					<a href=""><button class="over-btn" id="signin">Sign In</button></a>
 				</div>
 				<div class="overlay-panel overlay-right">
-					<h1>Hello, there</h1>
+					{% if user %}
+					<h1>Hello, {{ user.username}}</h1>
+					{% endif %}
 					<p>you are successfull logged in</p>
 					<a href="{% url 'logout' %}"><button class="over-btn" id="signup">logout</button></a>
 				</div>
