@@ -10,24 +10,25 @@ def index(request):
         user=authenticate(username=username,password=password)
         if user is not None:
             login(request,user)  
-            return redirect(request,success,{'user',user})
+            return render(request,"success.html")
         else:
-            return redirect (request,index)
+            return redirect ('index')
     return render(request,"index.html")    
+
 def loginin(request):
-    user=None 
-    if request.POST:
-      username=request.POST['username']
-      email=request.POST['email']
-      password=request.POST['password']
-      user=User.objects.create_user(username=username,password=password,email=email)
-      if user is not None:
-          return redirect(request,index)
-      else:
-          return render(request,"create.html")
-    return render(request,"create.html")  
-      
-def success(request):
-    return render(request,"success.html")
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = User.objects.create_user(username=username, password=password)
+        if user is not None:
+            return redirect('index')  
+        else:
+            return render(request, 'create.html', {'error_message': 'Invalid username or password'})
+    else:
+        return render(request, 'create.html') 
+    
+def logout_view(request):
+    logout(request)
+    return redirect('index')  
         
 

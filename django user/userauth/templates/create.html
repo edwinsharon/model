@@ -14,21 +14,35 @@
 </head>
 <body>
 <div class="container" id="container">
-    <div class="form-container signup-container">
-        <form action="#">
-            <h1>Create Account</h1>
+    <div class="form-container signin-container mt-5">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <h1>create account</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <span>or use your email to join us</span>
-            <input type="text" placeholder="Name" name="username"/>
-            <input type="email" placeholder="Email" name="email"/>
+            <span>or use your account</span>
+            <input type="text" placeholder="username" name="username"/>
             <input type="password" placeholder="Password" name="password"/>
-            <button>Sign Up</button>
+            
+            <a href="{% url 'loginin' %}"><button>Sign up</button></a>
         </form>
-    </div> 
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please log in with your account</p>
+                <a href=""><button class="over-btn" id="signin">Sign In</button></a>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, there</h1>
+                <p>To join us please enter your personal details</p>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="{% static 'js/script.js' %}"></script>
 </body>

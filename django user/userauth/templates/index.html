@@ -16,7 +16,8 @@
 <body>
     <div class="container" id="container">
 		<div class="form-container signin-container">
-			<form action="#">
+			<form action="#" method="post">
+				{% csrf_token %}
 				<h1>Sign In</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -25,7 +26,7 @@
 				</div>
 				<span>or use your account</span>
 				<input type="text" placeholder="username" name="username"/>
-				<input type="text" placeholder="Password" name="password"/>
+				<input type="password" placeholder="Password" name="password"/>
 				<a href="#" class="forgot">Forgot your Password</a>
 				<a href="{% url 'index' %}"><button>Sign In</button></a>
 			</form>
@@ -40,7 +41,7 @@
 				<div class="overlay-panel overlay-right">
 					<h1>Hello, there</h1>
 					<p>To join us please enter your personal details</p>
-					<a href=""><button class="over-btn" id="signup">Sign Up</button></a>
+					<a href="{% url 'loginin' %}"><button class="over-btn" id="signup">Sign Up</button></a>
 				</div>
 			</div>
 		</div>
