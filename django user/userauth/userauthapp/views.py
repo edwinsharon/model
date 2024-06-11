@@ -7,23 +7,27 @@ def index(request):
     if request.POST:
         username=request.POST['username']
         password=request.POST['password']
-        user=User.objects.create_user(username=username,password=password)
-        return render(request,"success.html",{'user':user})
-    return render(request,"index.html")
-def main(request):
-    return render(request,"main.html")    
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            login(request,user)  
+            return redirect(request,success,{'user',user})
+        else:
+            return redirect (request,index)
+    return render(request,"index.html")    
 def loginin(request):
     user=None 
     if request.POST:
       username=request.POST['username']
+      email=request.POST['email']
       password=request.POST['password']
-      user=authenticate(username=username,password=password)
+      user=User.objects.create_user(username=username,password=password,email=email)
       if user is not None:
-          return render(request,"success.html",{"user":user})
+          return redirect(request,index)
       else:
-          return render(request,"login.html")
-    return render(request,"login.html")    
-       
-
+          return render(request,"create.html")
+    return render(request,"create.html")  
+      
+def success(request):
+    return render(request,"success.html")
         
 
