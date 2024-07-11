@@ -1,0 +1,40 @@
+
+.head{
+    height:55px;
+   
+}
+.head a{
+    
+    text-decoration: none;
+   color: white;
+}
+.head a:hover{
+    color: goldenrod;
+}
+.main{
+    background-image: url(../images/i1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    width: 100%;
+   
+}
+.BTN1{
+   margin-left: 40%;
+   margin-top: 25%;
+}
+.main button:hover{
+    color: goldenrod;
+    
+}
+.products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.footermenu a{
+    text-decoration: none;
+    color: white;
+}
+.details{
+    background-image: url(../images/pxfuel.jpg);
+}
