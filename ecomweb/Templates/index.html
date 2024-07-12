@@ -12,6 +12,17 @@
 </head>
 <body>
    
+    <div class="left_main">
+        {% if user.is_authenticated %}
+        <div class="menu_main">
+           <a href="#"><i class="fa fa-fw fa-user"></i>{{ user.username }}</a>
+           <a href="{% url 'logoutuser' %}"><button class="btn btn-danger">logout</button></a>
+        </div>
+        {% else %}
+        <div class="menu_main">
+           <a href="{% url 'userlogin' %}"><i class="fa fa-fw fa-user"></i>LOGIN</a>
+        </div>
+        {% endif %}
     <div class="bg-dark row head2 text-light ">
         <div class="col-5 logotext "><h1><i>YULU CYCLES</i></h1></div>
         <div class="col-6"></div>
