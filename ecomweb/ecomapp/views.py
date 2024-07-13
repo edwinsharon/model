@@ -111,36 +111,63 @@ def userlogin(request):
         
     return render(request, 'userlogin.html') 
 
-def changepassword(request):
-    if request.method =='POST':
-        user = request.user
-        otp=generate_otp()
-        message = f'your {user.username}, mail verification code : {otp}'
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [user.email, ]
-        send_mail(message, email_from, recipient_list )
-        password=request.POST.get('password')
-        cfpassword=request.POST.get('cfpassword')
-        if password==cfpassword:
-           user = request.user
-           user.set_password(password)
-           user.save()
-           messages.success(request, 'Password changed successfully!')
-           return redirect('userlogin')
+def verification(request, email):
+    if request.method == 'POST':
+        otp_from_form = request.POST.get('otp')
+        otp_from_session = request.session.get('otp')
+        if otp_from_form == otp_from_session:
+            del request.session['otp']  # Remove OTP from session after successful verification
+            return redirect('changepassword')  # Redirect to change password page
         else:
-            messages.error(request, 'Passwords do not match. Please try again.')
-    return render(request, 'changepassword.html')        
-def mailverification(request):
-    user = request.user
-    message = f'your {user.username}, mail verified'
+            messages.error(request, 'Invalid OTP. Please try again.')
+
+    # Generate OTP and send email
+    otp = generate_otp()
+    request.session['otp'] = otp  # Store OTP in session
+    message = f'Your email verification code is: {otp}'
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [user.email, ]
-    send_mail(message, email_from, recipient_list )
+    recipient_list = [email]
+    send_mail('Email Verification', message, email_from, recipient_list)
+
+    return render(request, "verificationmail.html", {'email': email})   
+
+
 
 def generate_otp():
-    otp = ''.join(random.choices('0123456789', k=6))
+    otp = ''.join(random.choices('123456789', k=6))
     return otp    
 
 def getotp(request):
-    if request.method=="POST":
-        
+    if request.method=='POST':
+        otp1=request.POST.get('otp1')
+        return (otp1)
+    return render(request,'getemail.html')
+    
+
+def changepassword(request):
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        cfpassword = request.POST.get('cfpassword')
+        if password == cfpassword:
+            user = request.user
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Password changed successfully!')
+            return redirect('userlogin')
+        else:
+            messages.error(request, 'Passwords do not match. Please try again.')
+    return render(request, 'changepassword.html')
+
+
+
+def getemail(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+            if user:
+                request.session['email'] = email
+                return redirect('verification', email=email)
+        except User.DoesNotExist:
+            messages.error(request, "Email not found in the database.")
+    return render(request, "verificationmail.html")

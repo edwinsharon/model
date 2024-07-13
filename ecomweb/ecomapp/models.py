@@ -11,3 +11,7 @@ class product(models.Model):
     category=models.CharField(max_length=50)
     image=models.ImageField(upload_to='static/images/product/')
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class verify(models.Model):
+    otp=models.IntegerField()
+    otp1=models.IntegerField()
