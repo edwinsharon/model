@@ -8,6 +8,7 @@ from .models import *
 from verify_email.email_handler import send_verification_email
 from django.conf import settings
 from django.core.mail import send_mail
+import random
 
 # Create your views here.
 def index(request):
@@ -90,7 +91,7 @@ def usersignup(request):
             user = User.objects.create_user(username=username, email=email, password=password)    
             user.save()
             messages.success(request,"account created successfully")
-            return render(request, "usercreate.html")
+            return render(request, "createuser.html")
     return render(request,"createuser.html") 
 
 
@@ -112,6 +113,12 @@ def userlogin(request):
 
 def changepassword(request):
     if request.method =='POST':
+        user = request.user
+        otp=generate_otp()
+        message = f'your {user.username}, mail verification code : {otp}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.email, ]
+        send_mail(message, email_from, recipient_list )
         password=request.POST.get('password')
         cfpassword=request.POST.get('cfpassword')
         if password==cfpassword:
@@ -129,3 +136,11 @@ def mailverification(request):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [user.email, ]
     send_mail(message, email_from, recipient_list )
+
+def generate_otp():
+    otp = ''.join(random.choices('0123456789', k=6))
+    return otp    
+
+def getotp(request):
+    if request.method=="POST":
+        

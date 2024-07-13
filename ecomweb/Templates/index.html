@@ -15,7 +15,7 @@
     <div class="left_main bg-black">
         {% if user.is_authenticated %}
         <div class="menu_main">
-           <a href="#"><i class="fa fa-fw fa-user"></i>{{ user.username }}</a>
+           <span class="text-light">{{ user.username }}</span>
            <a href="{% url 'logoutuser' %}"><button class="btn btn-danger">logout</button></a>
         </div>
         {% else %}
