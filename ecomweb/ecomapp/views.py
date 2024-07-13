@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
+from verify_email.email_handler import send_verification_email
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -88,7 +91,7 @@ def usersignup(request):
             user.save()
             messages.success(request,"account created successfully")
             return render(request, "usercreate.html")
-    return render(request,"usercreate.html") 
+    return render(request,"createuser.html") 
 
 
 def userlogin(request):
@@ -106,3 +109,23 @@ def userlogin(request):
             return redirect('index')  
         
     return render(request, 'userlogin.html') 
+
+def changepassword(request):
+    if request.method =='POST':
+        password=request.POST.get('password')
+        cfpassword=request.POST.get('cfpassword')
+        if password==cfpassword:
+           user = request.user
+           user.set_password(password)
+           user.save()
+           messages.success(request, 'Password changed successfully!')
+           return redirect('userlogin')
+        else:
+            messages.error(request, 'Passwords do not match. Please try again.')
+    return render(request, 'changepassword.html')        
+def mailverification(request):
+    user = request.user
+    message = f'your {user.username}, mail verified'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [user.email, ]
+    send_mail(message, email_from, recipient_list )

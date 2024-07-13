@@ -8,12 +8,16 @@
 </head>
 <body class="bg-success">
     <div class="container bg-light mt-5 pt-2 pb-5 shadow-lg p-3 mb-5 bg-body rounded w-50" align="center">
-        <input type="text" placeholder="username" class="form form-control w-50 mt-5">
-        <input type="email" placeholder="email" class="form form-control w-50 mt-4">
-        <input type="password" placeholder="password" class="form form-control w-50 mt-4">
-        <input type="password" placeholder="password" class="form form-control w-50 mt-4">
-        <a href=""><button class="btn btn-danger   mb-3 subbtn  mt-2" >submit</button></a>
-        <a href=""><button class="btn btn-primary  mb-3 subbtn  mt-2" >Go Back</button></a>
+        <form action="" method="post">
+            <input type="text" placeholder="username" class="form form-control w-50 mt-5" name="username">
+        <input type="email" placeholder="email" class="form form-control w-50 mt-4" pattern="
+        ^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$" name="email">
+        <input type="password" placeholder="password" class="form form-control w-50 mt-4" name="password">
+        <input type="password" placeholder="password" class="form form-control w-50 mt-4" name="confirmpassword">
+        <a href="{% url 'usersignup' %}"><button class="btn btn-danger   mb-3 subbtn  mt-2" >submit</button></a>
+        <a href="{% url 'userlogin' %}"><button class="btn btn-primary  mb-3 subbtn  mt-2" >Go Back</button></a>
+
+        </form>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
