@@ -10,7 +10,7 @@ urlpatterns = [
     path('usersignup/',views.usersignup,name="usersignup"),
     path('logoutuser/',views.logoutuser,name="logoutuser"),
     path('changepassword/',views.changepassword,name="changepassword"),
-    path('verification/<str:email>/',views.verification,name='verification'),
+    path('verification/',views.verification,name='verification'),
     path('getemail/',views.getemail,name="getemail"),
     
 ]

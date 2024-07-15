@@ -3,12 +3,20 @@
 @media (max-width: 1400px) { 
     .head{
         height:55px;
-       display: block;
+       display: grid;
+       grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr;
     }
     .head a{
         
         text-decoration: none;
        color: white;
+    }
+    .left_main{
+        display: flex;
+    }
+    .menu_main{
+        flex-direction: column;
+        justify-content: end;
     }
     .head2{
         display: none;

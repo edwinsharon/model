@@ -38,8 +38,8 @@ def createseller(request):
             user.is_staff=True
             user.save()
             messages.success(request,"account created successfully")
-            return render(request, "sellercreate.html")
-    return render(request,"sellercreate.html")    
+            return render(request, "createseller.html")
+    return render(request,"createseller.html")    
 
 
 def sellerlogin(request):
@@ -111,25 +111,25 @@ def userlogin(request):
         
     return render(request, 'userlogin.html') 
 
-def verification(request, email):
+def verification(request):
     if request.method == 'POST':
-        otp_from_form = request.POST.get('otp')
+        otp_from_form = request.POST.get('otp1')
         otp_from_session = request.session.get('otp')
         if otp_from_form == otp_from_session:
-            del request.session['otp']  # Remove OTP from session after successful verification
-            return redirect('changepassword')  # Redirect to change password page
+            del request.session['otp']  
+            return redirect('changepassword')  
         else:
             messages.error(request, 'Invalid OTP. Please try again.')
 
-    # Generate OTP and send email
+
     otp = generate_otp()
-    request.session['otp'] = otp  # Store OTP in session
+    request.session['otp'] = otp 
     message = f'Your email verification code is: {otp}'
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
+    recipient_list = [request.session.get('email')]
     send_mail('Email Verification', message, email_from, recipient_list)
 
-    return render(request, "verificationmail.html", {'email': email})   
+    return render(request, "getemail.html")   
 
 
 
@@ -149,11 +149,15 @@ def changepassword(request):
         password = request.POST.get('password')
         cfpassword = request.POST.get('cfpassword')
         if password == cfpassword:
-            user = request.user
+            email=request.session.get('email')
+            user = User.objects.get(email=email)
             user.set_password(password)
             user.save()
             messages.success(request, 'Password changed successfully!')
-            return redirect('userlogin')
+            if user.is_staff:
+                return redirect('sellerlogin')
+            else:
+                return redirect('userlogin')
         else:
             messages.error(request, 'Passwords do not match. Please try again.')
     return render(request, 'changepassword.html')
@@ -167,7 +171,7 @@ def getemail(request):
             user = User.objects.get(email=email)
             if user:
                 request.session['email'] = email
-                return redirect('verification', email=email)
+                return redirect('verification')
         except User.DoesNotExist:
             messages.error(request, "Email not found in the database.")
     return render(request, "verificationmail.html")
