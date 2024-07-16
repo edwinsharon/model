@@ -175,3 +175,7 @@ def getemail(request):
         except User.DoesNotExist:
             messages.error(request, "Email not found in the database.")
     return render(request, "verificationmail.html")
+
+
+# def addproduct(request):
+#     if request.method == 'POST':

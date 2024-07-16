@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('',views.index,name="index"),
     path('seller/',views.sellerlogin,name="sellerlogin"),
@@ -12,5 +14,9 @@ urlpatterns = [
     path('changepassword/',views.changepassword,name="changepassword"),
     path('verification/',views.verification,name='verification'),
     path('getemail/',views.getemail,name="getemail"),
+    # path('addproduct/',views.)
     
 ]
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

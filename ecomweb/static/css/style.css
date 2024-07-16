@@ -1,6 +1,4 @@
-
-
-@media (max-width: 1400px) { 
+@media only screen and (max-width: 1399.8px) and (min-width:1200px){ 
     .head{
         height:55px;
        display: grid;
@@ -68,8 +66,78 @@
         display: none;
     }
     }
+
+
+    @media only screen and (min-width: 1400px) { 
+        .head{
+            height:55px;
+           display: grid;
+           grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr;
+        }
+        .head a{
+            
+            text-decoration: none;
+           color: white;
+        }
+        .left_main{
+            display: flex;
+        }
+        .menu_main{
+            flex-direction: column;
+            justify-content: end;
+        }
+        .head2{
+            display: none;
+        }
+        .logotext{
+            display:block;
+        }
+        .head a:hover{
+            color: goldenrod;
+        }
+        .main{
+            background-image: url(../images/i1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 500px;
+            width: 100%;
+           
+        }
+        .BTN1{
+           margin-left: 40%;
+           margin-top: 20%;
+        }
+        .main button:hover{
+            color: goldenrod;
+            
+        }
+        .products{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .footermenu a{
+            text-decoration: none;
+            color: white;
+        }
+        .details{
+            background-image: url(../images/pxfuel.jpg);
+            height: 500px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .aboutdetails{
+            color: goldenrod;
+        }
+        .aboutdetails h5:hover{
+         color: chocolate;
+        }
+        .aboutdetails2{
+            display: none;
+        }
+        }
     
-    @media only screen and (max-width: 576px) { 
+    @media only screen and (max-width: 576px){ 
         .logotext{
            
             text-align: center;
@@ -144,7 +212,7 @@
            }
      }
     
-    @media only screen and (max-width: 768px) { 
+    @media only screen and (max-width: 767.8px) and (min-width: 576px){ 
         .logotext{
            
             text-align: center;
@@ -219,7 +287,7 @@
            }
     
     }
-    @media only screen and (max-width: 992px) { 
+    @media only screen and (max-width: 991.8px) and (min-width:768px) { 
         .logotext{
            
             text-align: center;
@@ -298,7 +366,8 @@
     }
     
     
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (max-width: 1199.8px) and 
+    (min-width:992px) {
         .logotext{
            
             text-align: center;
