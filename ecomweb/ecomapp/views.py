@@ -12,7 +12,8 @@ import random
 
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    products = product.objects.all()
+    return render(request,'index.html',{'products': products})
 def createseller(request):
     if request.POST:
         email=request.POST.get('email')
@@ -56,7 +57,13 @@ def sellerlogin(request):
     return render(request,"sellerlogin.html") 
 
 def sellerindex(request):
-    return render(request,"sellerindex.html")
+    user=request.user
+    products = product.objects.filter(seller=user)
+    context = {
+        'products': products
+    }
+    
+    return render(request,"sellerindex.html",context)
 
 def logoutseller(request):
     logout(request)
@@ -177,5 +184,50 @@ def getemail(request):
     return render(request, "verificationmail.html")
 
 
-# def addproduct(request):
-#     if request.method == 'POST':
+def addproduct(request):
+    if request.POST:
+        productname=request.POST.get("productname")
+        prize=request.POST.get("prize")
+        offer=request.POST.get("offer")
+        speed=request.POST.get("speed")
+        color=request.POST.get("color")
+        description=request.POST.get("description")
+        category=request.POST.get("category")
+        image=request.FILES.get("image")
+        seller=request.user
+        if not productname or not prize or not offer or not speed or not color or not description or not category or not image:
+            messages.error(request,"all fields are required")
+            print(productname,prize,offer,speed,color,description,category)
+            if image is not None:
+                  print("hello")
+        
+
+        else:
+            probj=product(productname=productname,prize=prize,offer=offer,speed=speed,color=color,description=description,category=category,seller=seller,image=image)
+            probj.save()
+            messages.success(request,"product added")    
+            return redirect("additem")
+        
+
+    return render (request,"addpro.html")
+
+
+def delete_g(request,pk):
+    prodobj=product.objects.get(pk=pk)
+    prodobj.delete()
+    return redirect("sellerindex")
+
+
+def edit_g(request,pk):
+     if request.method =="POST":
+          prodobj=product.objects.get(pk=pk)
+          prodobj.objects.filter(pk=pk).update()
+          return redirect('sellerproducts')
+     else:            
+          data=product.objects.get(pk=pk)
+          return render(request,'editpro.html',{'data':data})
+      
+      
+def productsdisplay(request,pk):
+    products = product.objects.get(pk=pk)
+    return render(request,'product.html',{'data': products})

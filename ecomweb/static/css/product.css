@@ -1,0 +1,17 @@
+.main{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 5%;
+}
+.imag{
+    width:30%;
+    height:50%;
+    margin-left: 35%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

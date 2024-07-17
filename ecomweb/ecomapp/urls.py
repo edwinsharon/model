@@ -14,7 +14,11 @@ urlpatterns = [
     path('changepassword/',views.changepassword,name="changepassword"),
     path('verification/',views.verification,name='verification'),
     path('getemail/',views.getemail,name="getemail"),
-    # path('addproduct/',views.)
+    path('addproduct/',views.addproduct,name="additem"),
+    path('delete_g/<int:pk>',views.delete_g,name="delete"),
+    path('edit_g/<int:pk>',views.edit_g,name="edit"),  
+    path('productsdispaly/<int:pk>',views.productsdisplay,name="productsdisplay"),
+    
     
 ]
 if settings.DEBUG:

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/product.css/' %}">
+</head>
+<body>
+    <div class="main">
+        <img src="{{ data.image.url }}" alt="product" class="imag" align="center">
+        <div class="details">
+        <h2>{{ data.productname }}</h2>
+        <p>PRIZE:{{ data.prize }}</p>
+        <p>OFFER:{{ data.offer }}</p>
+        <p>SPEED TYPE:{{ data.speed}}</p>
+        <p> COLOR:{{ data.color }}</p>
+        <p>CATEGORY:{{ data.category }}</p>
+        
+        </div>
+        <pre> <h2>ABOUT THIS PRODUCT:</h2>{{ data.description }}</pre>
+
+    </div>
+</body>
+</html>

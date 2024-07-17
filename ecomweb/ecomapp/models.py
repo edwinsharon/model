@@ -9,7 +9,7 @@ class product(models.Model):
     color=models.CharField(max_length=50)
     description=models.CharField(max_length=300)
     category=models.CharField(max_length=50)
-    image=models.ImageField(upload_to='static/images/product/')
+    image=models.ImageField(upload_to='images/')
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class verify(models.Model):

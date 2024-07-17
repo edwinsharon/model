@@ -12,18 +12,18 @@
 </head>
 <body>
    
-    <div class="left_main bg-black">
+    <div class="left_main bg-black d-flex flex-row bd-highlight">
         {% if user.is_authenticated %}
-        <div class="menu_main">
+        <div class="menu_main d-flex justify-content-end">
            <span class="text-light">{{ user.username }}</span>
-           <a href="{% url 'logoutuser' %}"><button class="btn btn-danger">logout</button></a>
+           <a href="{% url 'logoutuser' %}"><button class="btn btn-danger ">logout</button></a>
         </div>
         {% else %}
-        <div class="menu_main">
+        <div class="menu_main d-flex justify-content-end">
            <a href="{% url 'userlogin' %}"><i class="fa fa-fw fa-user"></i><button class="btn btn-danger">login</button></a>
         </div>
         {% endif %}
-        </div>
+    </div>
     <div class="bg-dark row head2 text-light ">
         <div class="col-5 logotext "><h1><i>YULU CYCLES</i></h1></div>
         <div class="col-6"></div>
@@ -35,11 +35,11 @@
     <div class="bg-dark row head text-light ">
        <h1 class="col"><i>YULU CYCLES</i></h1>
        <div class="col"></div>
-       <a href="" class="col">About</a>
-       <a href="" class="col">Shop</a>
-       <a href="" class="col">Contact</a>
-       <a href="" class="col">Products</a>
-       <a href="" class="col">feedback</a>
+       <a href="" class="col pt-2">About</a>
+       <a href="" class="col pt-2">Shop</a>
+       <a href="" class="col pt-2">Contact</a>
+       <a href="" class="col pt-2">Products</a>
+      
     </div>
 
    
@@ -47,30 +47,16 @@
         <a href=""><button class="btn btn-dark BTN1 w-25">Shop now</button></a>
     </div> 
     <div class="products mt-3 ms-5">
+        {% for product in products %}
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="image">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">buy now</a>
+              <h5 class="card-title">{{ product.productname }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+              <a href="{% url 'productsdisplay' product.pk %}" class="btn btn-primary">buy now</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">buy now</a>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">buy now</a>
-            </div>
-          </div>
+         {% endfor %}
     </div>
     <div class="details mt-3 row">
         <div class="col-9"></div>
@@ -103,8 +89,6 @@
                 <div>
                     <a href="">Products</a>
                 </div>
-                
-               
                 <div>
                     <a href="">feedback</a>
                 </div>
