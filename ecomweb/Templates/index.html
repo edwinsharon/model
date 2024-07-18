@@ -46,9 +46,25 @@
     <div class="main">
         <a href=""><button class="btn btn-dark BTN1 w-25">Shop now</button></a>
     </div> 
+  
+        <form action="" method="post" class="category row mt-2">
+            {% csrf_token %}
+        <div class="col-8"></div>
+        <select name="category" id="category" class="col-2" >
+            <option value="all">all</option>
+            <option value="3wheeler">3wheeler</option>
+            <option value="kids">kids</option>
+            <option value="teen">teen</option>
+            <option value="adult">adult</option>
+        </select>
+        <div class="col-2">
+        <a href=""><button class="btn btn-primary">Apply</button></a>
+        </form>
+  
+    </div>
     <div class="products mt-3 ms-5">
         {% for product in products %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mt-2 shadow-lg p-3 mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ product.image.url }}" class="card-img-top" alt="image">
             <div class="card-body">
               <h5 class="card-title">{{ product.productname }}</h5>
