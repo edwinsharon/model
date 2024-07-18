@@ -11,20 +11,23 @@ from django.core.mail import send_mail
 import random
 
 # Create your views here.
+from django.shortcuts import render
+from .models import Product, Categories
+
 def index(request):
-    if request.POST:
-        category=request.POST.get('category')
-        if category=="all":
-            products = product.objects.all()
-            return render(request,'index.html',{'products': products})
-        else:    
-            products = product.objects.filter(category=category)
-            return render(request,'index.html',{'products': products})
+    categories = Categories.objects.all()
+    
+    if request.method == 'POST':
+        category_id = request.POST.get('category')
+        if category_id == "all":
+            products = Product.objects.all()
+        else:
+            products = Product.objects.filter(category_id=category_id)
+    else:
+        products = Product.objects.all()
+        
+    return render(request, 'index.html', {'products': products, 'categories': categories})
 
-       
-
-    products = product.objects.all()
-    return render(request,'index.html',{'products': products})
 def createseller(request):
     if request.POST:
         email=request.POST.get('email')
@@ -68,13 +71,12 @@ def sellerlogin(request):
     return render(request,"sellerlogin.html") 
 
 def sellerindex(request):
-    user=request.user
-    products = product.objects.filter(seller=user)
+    user = request.user
+    products = Product.objects.filter(seller=user)
     context = {
         'products': products
     }
-    
-    return render(request,"sellerindex.html",context)
+    return render(request, "sellerindex.html", context)
 
 def logoutseller(request):
     logout(request)
@@ -219,8 +221,8 @@ def addproduct(request):
             messages.success(request,"product added")    
             return redirect("additem")
         
-
-    return render (request,"addpro.html")
+    products = product.objects.filter(category=category)
+    return render (request,"addpro.html",{"products":products})
 
 
 def delete_g(request,pk):
@@ -242,3 +244,16 @@ def edit_g(request,pk):
 def productsdisplay(request,pk):
     products = product.objects.get(pk=pk)
     return render(request,'product.html',{'data': products})
+
+def addcategory(request):
+    if request.method == 'POST':
+        category=request.POST.get("category")
+    
+        new_category = Categories.save(commit=False)
+        new_category.seller = request.user 
+        new_category.save()
+        return redirect('sellerindex')  
+   
+        
+    return render(request, 'sellerindex.html')
+

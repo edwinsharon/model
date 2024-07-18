@@ -43,7 +43,7 @@
     }
     .products{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
     .footermenu a{
         text-decoration: none;
@@ -113,7 +113,7 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         }
         .footermenu a{
             text-decoration: none;
@@ -404,7 +404,7 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr ;
             margin-left: 20px;
         }
         .footermenu a{

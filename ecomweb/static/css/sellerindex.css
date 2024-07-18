@@ -4,3 +4,8 @@ body{
     background-size: cover;
     width: 100%;
     }
+    .image{
+        height:25%;
+        width: 50%;
+        border: 2px black solid;
+    }

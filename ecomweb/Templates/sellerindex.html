@@ -18,33 +18,40 @@
     </div>
     <div class="container  mt-5 opacity-75 text-light">
         <div class="row">
-        <h1 class="p-5 col-9">SELLER INDEX</h1>
+        <h1 class="p-5 col-6">SELLER INDEX</h1>
         <a href="{% url 'additem' %}" class="col-3 p-5"><button class="btn btn-primary btn">ADD PRODUCT</button></a>
+        <form action="" method="post" class="col-3 p-3">
+            {% csrf_token %}
+        <input type="text"  height="2px" name="category">
+        
+        <a href="{% url 'addcategory' %}"clas=" btn btn-primary" >Add</a>
+        </form>
+    
         </div>
         
             {% for product in products %}
-            <div class="bg-light text-black p-5 m-3 rounded shadow-lg">
-            <div class="row">
+            <div class="bg-white text-black p-5 m-3 rounded shadow-lg">
                 
-                 <h1>{{ product.productname }}</h1>
-
-            </div>
             <div class="row">
-                <p class="col">PRIZE :{{ product.prize }}</p>
-                <div class="col"><p> OFFER : {{ product.offer }}</p></div>
+                <img src="{{ product.image.url }}"  alt="image" class="col shadow-lg w-25 image rounded">
+                <div class="col mt-5 ms-5">
+                    <h1 >{{ product.productname|upper }}</h1><h4 >PRIZE :{{ product.prize }}</h4><h4> OFFER : {{ product.offer }}</h4>
+                <h4>SPEED TYPE: {{ product.speed }}</h4>
+            <h4>COLOR :{{ product.color }}</h4>
+                    <h4>CATEGORY :{{ product.category }}</h4>
+                <h4>ABOUT :</h4><h3>{{ product.description }}</h3>
+                <a href="{% url 'edit' product.pk %}"><button class="btn btn-primary">Edit</button></a> 
+                <a href="{% url 'delete' product.pk %}"><button class="btn btn-danger">Delete</button></a></div>
+                 
 
             </div>
+          
             
-            <div class="row"><p class="col"> SPEED TYPE: {{ product.speed }}</p><p class="col"> COLOR :{{ product.color }}</p></div>
-            
-            <div class="row"><p class="col"> ABOUT :{{ product.description }}</p><p class="col"> CATEGORY :{{ product.category }}</p></div>
-           <div class="row">
-            <div class="col"><a href="{% url 'edit' product.pk %}"><button class="btn btn-primary">edit</button></a> </div>
-            <div class="col"><a href="{% url 'delete' product.pk %}"><button class="btn btn-danger">delete</button></a></div>
-           </div>
+          
         
         </div>
             {% endfor %}
+           
         
       
             
