@@ -20,6 +20,7 @@ urlpatterns = [
     path('productsdispaly/<int:pk>',views.productsdisplay,name="productsdisplay"),
     path('addcategory/',views.addcategory,name="addcategory"),
     path('filtercategory/',views.filtercategory,name="filtercategory"),
+    path('deletecat/<int:pk>',views.deletecat,name="deletecat"),
     
     
 ]

@@ -54,11 +54,10 @@
             {% csrf_token %}
         
         <select name="category" id="category" class="col-2 ms-4" >
-            <option value="all">all</option>
-            <option value="3wheeler">3wheeler</option>
-            <option value="kids">kids</option>
-            <option value="teen">teen</option>
-            <option value="adult">adult</option>
+            <option value="all">All</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.category }}</option>
+            {% endfor %}
         </select>
         <div class="col-2">
         <a href=""><button class="btn btn-primary">Apply</button></a>

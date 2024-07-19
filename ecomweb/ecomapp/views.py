@@ -272,3 +272,10 @@ def filtercategory(request):
     return render(request, 'sellerindex.html', {'products': products, 'categories': categories})
 
 
+def deletecat(request,pk):
+    catobj=Categories.objects.get(pk=pk)
+    catobj.delete()
+    return redirect("sellerindex")
+
+
+
