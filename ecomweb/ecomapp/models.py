@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Product(models.Model):
+class product(models.Model):
     productname = models.CharField(max_length=100)
     prize = models.IntegerField()
     offer = models.CharField(max_length=50)

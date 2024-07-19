@@ -11,8 +11,6 @@ from django.core.mail import send_mail
 import random
 
 # Create your views here.
-from django.shortcuts import render
-from .models import Product, Categories
 
 def index(request):
     categories = Categories.objects.all()
@@ -20,11 +18,11 @@ def index(request):
     if request.method == 'POST':
         category_id = request.POST.get('category')
         if category_id == "all":
-            products = Product.objects.all()
+            products = product.objects.all()
         else:
-            products = Product.objects.filter(category_id=category_id)
+            products = product.objects.filter(category_id=category_id)
     else:
-        products = Product.objects.all()
+        products =product.objects.all()
         
     return render(request, 'index.html', {'products': products, 'categories': categories})
 
@@ -72,9 +70,11 @@ def sellerlogin(request):
 
 def sellerindex(request):
     user = request.user
-    products = Product.objects.filter(seller=user)
+    products = product.objects.filter(seller=user)
+    categories = Categories.objects.all() 
     context = {
-        'products': products
+        'products': products,
+        'categories':categories
     }
     return render(request, "sellerindex.html", context)
 
@@ -198,31 +198,28 @@ def getemail(request):
 
 
 def addproduct(request):
-    if request.POST:
-        productname=request.POST.get("productname")
-        prize=request.POST.get("prize")
-        offer=request.POST.get("offer")
-        speed=request.POST.get("speed")
-        color=request.POST.get("color")
-        description=request.POST.get("description")
-        category=request.POST.get("category")
-        image=request.FILES.get("image")
-        seller=request.user
+    if request.method == 'POST':
+        productname = request.POST.get("productname")
+        prize = request.POST.get("prize")
+        offer = request.POST.get("offer")
+        speed = request.POST.get("speed")
+        color = request.POST.get("color")
+        description = request.POST.get("description")
+        category = request.POST.get("category")  
+        image = request.FILES.get("image")
+        seller = request.user
+        
         if not productname or not prize or not offer or not speed or not color or not description or not category or not image:
-            messages.error(request,"all fields are required")
-            print(productname,prize,offer,speed,color,description,category)
-            if image is not None:
-                  print("hello")
-        
-
+            messages.error(request, "All fields are required")
         else:
-            probj=product(productname=productname,prize=prize,offer=offer,speed=speed,color=color,description=description,category=category,seller=seller,image=image)
+            probj = product(productname=productname, prize=prize, offer=offer, speed=speed, color=color, description=description, category=category, seller=seller, image=image)
             probj.save()
-            messages.success(request,"product added")    
-            return redirect("additem")
-        
-    products = product.objects.filter(category=category)
-    return render (request,"addpro.html",{"products":products})
+            messages.success(request, "Product added successfully")
+            return redirect("addproduct")
+    
+    categories = Categories.objects.all()  
+    return render(request, "addpro.html", {"categories": categories})
+
 
 
 def delete_g(request,pk):
@@ -247,13 +244,27 @@ def productsdisplay(request,pk):
 
 def addcategory(request):
     if request.method == 'POST':
-        category=request.POST.get("category")
-    
-        new_category = Categories.save(commit=False)
-        new_category.seller = request.user 
+        print("hai")
+        category_name = request.POST.get("category")
+        seller = request.user
+        print(seller)  
+        new_category = Categories(category=category_name, seller=seller)
         new_category.save()
-        return redirect('sellerindex')  
-   
         
+        messages.success(request, 'Category added successfully!')
+        return redirect('sellerindex') 
     return render(request, 'sellerindex.html')
+def filtercategory(request):
+    categories = Categories.objects.all()
+    if request.method == 'POST':
+        category_id = request.POST.get('category')
+        if category_id == "all":
+            products = product.objects.all()
+        else:
+            products = product.objects.filter(category_id=category_id)
+    else:
+        products =product.objects.all()
+        
+    return render(request, 'sellerindex.html', {'products': products, 'categories': categories})
+
 
