@@ -205,14 +205,18 @@ def addproduct(request):
         speed = request.POST.get("speed")
         color = request.POST.get("color")
         description = request.POST.get("description")
-        category = request.POST.get("category")  
+        category_id = request.POST.get("category_id")  
         image = request.FILES.get("image")
         seller = request.user
-        
-        if not productname or not prize or not offer or not speed or not color or not description or not category or not image:
+        print(productname,prize,offer,speed,color,description,category_id,seller)
+        try:
+            category_instance = Categories.objects.get(id=category_id)
+        except Categories.DoesNotExist:
+            pass
+        if not productname or not prize or not offer or not speed or not color or not description or not category_id or not image:
             messages.error(request, "All fields are required")
         else:
-            probj = product(productname=productname, prize=prize, offer=offer, speed=speed, color=color, description=description, category=category, seller=seller, image=image)
+            probj = product(productname=productname, prize=prize, offer=offer, speed=speed, color=color, description=description, category=category_instance, seller=seller, image=image)
             probj.save()
             messages.success(request, "Product added successfully")
             return redirect("addproduct")

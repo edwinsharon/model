@@ -52,7 +52,9 @@
                     <h1 >{{ product.productname|upper }}</h1><h4 >PRIZE :{{ product.prize }}</h4><h4> OFFER : {{ product.offer }}</h4>
                 <h4>SPEED TYPE: {{ product.speed }}</h4>
             <h4>COLOR :{{ product.color }}</h4>
-                    <h4>CATEGORY :{{ product.category }}</h4>
+                   {% for category in categories %}
+                    <h4>CATEGORY :{{ category.category }}</h4>
+                    {% endfor %}
                 <h4>ABOUT :</h4><h3>{{ product.description }}</h3>
                 <a href="{% url 'edit' product.pk %}"><button class="btn btn-primary">Edit</button></a> 
                 <a href="{% url 'delete' product.pk %}"><button class="btn btn-danger">Delete</button></a></div>
