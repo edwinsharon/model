@@ -21,6 +21,7 @@ urlpatterns = [
     path('addcategory/',views.addcategory,name="addcategory"),
     path('filtercategory/',views.filtercategory,name="filtercategory"),
     path('deletecat/<int:pk>',views.deletecat,name="deletecat"),
+    path('searchpro/',views.searchpro,name="searchpro"),
     
     
 ]

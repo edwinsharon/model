@@ -21,6 +21,7 @@ def index(request):
             products = product.objects.all()
         else:
             products = product.objects.filter(category_id=category_id)
+            return render(request, 'index.html', {'products': products, 'categories': categories})
     else:
         products =product.objects.all()
         
@@ -287,6 +288,17 @@ def deletecat(request,pk):
     catobj=Categories.objects.get(pk=pk)
     catobj.delete()
     return redirect("sellerindex")
+
+def searchpro(request):
+    categories = Categories.objects.all()
+    products =product.objects.all()
+    if request.POST:
+        searchitem=request.POST.get("searchitem")
+        if searchitem=="":
+            return redirect('index')
+        products = product.objects.filter(productname=searchitem)
+        return render(request,'index.html',{"products":products,'categories': categories})
+    return redirect(request, 'index')
 
 
 
