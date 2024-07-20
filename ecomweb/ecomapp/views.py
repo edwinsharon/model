@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -205,10 +205,10 @@ def addproduct(request):
         speed = request.POST.get("speed")
         color = request.POST.get("color")
         description = request.POST.get("description")
-        category_id = request.POST.get("category_id")  
+        category_id = request.POST.get("category")  
         image = request.FILES.get("image")
         seller = request.user
-        print(productname,prize,offer,speed,color,description,category_id,seller)
+
         try:
             category_instance = Categories.objects.get(id=category_id)
         except Categories.DoesNotExist:
@@ -219,7 +219,7 @@ def addproduct(request):
             probj = product(productname=productname, prize=prize, offer=offer, speed=speed, color=color, description=description, category=category_instance, seller=seller, image=image)
             probj.save()
             messages.success(request, "Product added successfully")
-            return redirect("addproduct")
+            return redirect('addproduct')
     
     categories = Categories.objects.all()  
     return render(request, "addpro.html", {"categories": categories})
@@ -234,9 +234,20 @@ def delete_g(request,pk):
 
 def edit_g(request,pk):
      if request.method =="POST":
-          prodobj=product.objects.get(pk=pk)
-          prodobj.objects.filter(pk=pk).update()
-          return redirect('sellerproducts')
+        productname = request.POST.get("productname")
+        prize = request.POST.get("prize")
+        offer = request.POST.get("offer")
+        speed = request.POST.get("speed")
+        color = request.POST.get("color")
+        description = request.POST.get("description")
+        category = request.POST.get("category")  
+        image = request.FILES.get("image")
+        seller = request.user
+        category_instance = get_object_or_404(Categories, pk=category)
+        probj.category = category_instance
+        probj = product(productname=productname, prize=prize, offer=offer, speed=speed, color=color, description=description, seller=seller, image=image) 
+        probj.objects.filter(pk=pk).update()
+        return redirect('sellerindex')
      else:            
           data=product.objects.get(pk=pk)
           return render(request,'editpro.html',{'data':data})

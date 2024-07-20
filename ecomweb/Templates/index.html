@@ -67,14 +67,16 @@
     </div>
     <div class="products mt-3 ms-5">
         {% for product in products %}
+        <a href="{% url 'productsdisplay' product.pk %}" class="productcard">
         <div class="card mt-2 shadow-lg p-3 mb-5 bg-body rounded" style="width: 18rem;">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="image">
+            <img src="{{ product.image.url }}" class="card-img-top cardimage" alt="image" >
             <div class="card-body">
               <h5 class="card-title">{{ product.productname }}</h5>
               <p class="card-text">{{ product.description }}</p>
-              <a href="{% url 'productsdisplay' product.pk %}" class="btn btn-primary">buy now</a>
+             
             </div>
           </div>
+        </a>
          {% endfor %}
     </div>
     <div class="details mt-3 row">

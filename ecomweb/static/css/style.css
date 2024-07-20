@@ -1,3 +1,11 @@
+.products a{
+    text-decoration: none;
+    color:black;
+}
+.cardimage{
+    height: 300px;
+    width: 260px;
+}
 @media only screen and (max-width: 1399.8px) and (min-width:1200px){ 
     .head{
         height:55px;
@@ -44,6 +52,7 @@
     .products{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        text-decoration: none;
     }
     .footermenu a{
         text-decoration: none;
@@ -114,6 +123,7 @@
         .products{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            text-decoration: none;
         }
         .footermenu a{
             text-decoration: none;
@@ -175,6 +185,7 @@
             display: grid;
             grid-template-columns: 1fr;
             margin-left: 20px;
+            text-decoration: none;
         }
         .footermenu a{
             text-decoration: none;
@@ -250,6 +261,7 @@
             display: grid;
             grid-template-columns: 1fr;
             margin-left: 20px;
+            text-decoration: none;
         }
         .footermenu a{
             text-decoration: none;
@@ -326,6 +338,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             margin-left: 20px;
+            text-decoration: none;
         }
         .footermenu a{
             text-decoration: none;
@@ -406,6 +419,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr ;
             margin-left: 20px;
+            
         }
         .footermenu a{
             text-decoration: none;
