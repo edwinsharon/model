@@ -52,16 +52,25 @@
             <div class="row">
                 <img src="{{ product.image.url }}"  alt="image" class="col shadow-lg w-25 image rounded">
                 <div class="col mt-5 ms-5">
-                    <h1 >{{ product.productname|upper }}</h1><h4 >PRIZE :{{ product.prize }}</h4><h4> OFFER : {{ product.offer }}</h4>
-                <h4>SPEED TYPE: {{ product.speed }}</h4>
-            <h4>COLOR :{{ product.color }}</h4>
-                   
-                    <h4>CATEGORY :{{ product.categories }}</h4>
-                    
-                <h4>ABOUT :</h4><h3>{{ product.description }}</h3>
+                    <h1 >{{ product.productname|upper }}</h1>
+                    <h4>PRIZE</h4>
+                    <h4>OFFER</h4>
+                    <h4>SPEED TYPE</h4>
+                    <H4>COLOR</H4>
+                    <h4>CATEGORY</h4>
+                    <h4>ABOUT</h4>
                 <a href="{% url 'edit' product.pk %}"><button class="btn btn-primary">Edit</button></a> 
                 <a href="{% url 'delete' product.pk %}"><button class="btn btn-danger">Delete</button></a></div>
+              <div class="col mt-5">
+                <h4 class="mt-5 pt-1">:{{ product.prize }}</h4><h4> :{{ product.offer }}</h4>
+                <h4>:{{ product.speed }}</h4>
+            <h4>:{{ product.color }}</h4>
+                   
+                    <h4>:{{ product.categories }}</h4>
+                    
+                <h3>:{{ product.description }}</h3>
             </div>
+              </div>
           
             
           

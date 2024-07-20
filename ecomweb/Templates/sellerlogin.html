@@ -16,13 +16,15 @@
            
             <form action="" method="post" class="form p-1" >
                {% csrf_token %}
+               <img src="{% static '/images/loginimg.png' %}" alt="LOGIN" class="loginimg">
                <h1 style="margin-left: 30%; margin-top: 5%;">SELLER LOGIN</h1>
-                <input type="text" placeholder="username" class="border-round-1  row   w-50 border-dark form-control" name="username" style="margin-left: 30%;">
-                <input type="password" name="password" id="password" class="row  mb-2  border-dark w-50 form-control" placeholder="password" style="margin-left: 30%; margin-top: 2%;">
-                <a href="{% url 'sellerlogin' %}"><button class="btn btn-danger row  subbtn "  style="margin-left: 30%;">submit</button></a>
+                <input type="text" placeholder="Username" class="border-round-1  row   w-50 border-dark form-control" name="username" style="margin-left: 30%;">
+                <input type="password" name="password" id="password" class="row  mb-2  border-dark w-50 form-control" placeholder="Password" style="margin-left: 30%; margin-top: 2%;">
+                <a href="{% url 'sellerlogin' %}"><button class="btn btn-danger row  subbtn "  style="margin-left: 30%;">Submit</button></a>
                 <a href="{% url 'getemail' %}" style="margin-left: 30%;">forgot password</a>
                 <a href="{% url 'createseller' %}" style="margin-left: 30%;margin-top: 3%;">Sign up</a>
             </form>
+            <h1 class="title mt-5"><i>YULU CYCLES</i></h1>
         
        </div>
     </div>

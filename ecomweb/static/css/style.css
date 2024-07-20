@@ -6,6 +6,10 @@
     height: 300px;
     width: 260px;
 }
+.navitem a{
+text-decoration: none;
+color: white;
+}
 @media only screen and (max-width: 1399.8px) and (min-width:1200px){ 
     .head{
         height:55px;
@@ -34,7 +38,7 @@
         color: goldenrod;
     }
     .main{
-        background-image: url(../images/i1.jpg);
+        background-image: url(../images/indexbanner2.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         height: 500px;
@@ -51,7 +55,7 @@
     }
     .products{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         text-decoration: none;
     }
     .footermenu a{
@@ -59,11 +63,11 @@
         color: white;
     }
     .details{
-        background-image: url(../images/pxfuel.jpg);
+        background-image: url(../images/indexbanner1.jpg);
         height: 500px;
         background-repeat: no-repeat;
         background-size: cover;
-        background-attachment: fixed;
+    
     }
     .aboutdetails{
         color: goldenrod;
@@ -83,11 +87,7 @@
            display: grid;
            grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr;
         }
-        .head a{
-            
-            text-decoration: none;
-           color: white;
-        }
+   
         .left_main{
             display: flex;
         }
@@ -105,7 +105,7 @@
             color: goldenrod;
         }
         .main{
-            background-image: url(../images/i1.jpg);
+            background-image: url(../images/indexbanner2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             height: 500px;
@@ -122,7 +122,7 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr ;
             text-decoration: none;
         }
         .footermenu a{
@@ -130,11 +130,11 @@
             color: white;
         }
         .details{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
+           
         }
         .aboutdetails{
             color: goldenrod;
@@ -166,7 +166,7 @@
             color: goldenrod;
         }
         .main{
-            background-image: url(../images/i1.jpg);
+            background-image: url(../images/indexbanner2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             height: 200px;
@@ -183,8 +183,7 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr;
-            margin-left: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
             text-decoration: none;
         }
         .footermenu a{
@@ -192,11 +191,10 @@
             color: white;
         }
         .details{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
             display: none;
         }
         .details2{
@@ -242,7 +240,7 @@
             color: goldenrod;
         }
         .main{
-            background-image: url(../images/i1.jpg);
+            background-image: url(../images/indexbanner2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             height: 200px;
@@ -259,8 +257,7 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr;
-            margin-left: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
             text-decoration: none;
         }
         .footermenu a{
@@ -268,11 +265,10 @@
             color: white;
         }
         .details{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
             display: none;
         }
         .details2{
@@ -319,7 +315,7 @@
             color: goldenrod;
         }
         .main{
-            background-image: url(../images/i1.jpg);
+            background-image: url(../images/indexbanner2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             height: 200px;
@@ -336,8 +332,8 @@
         }
         .products{
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-left: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
+         
             text-decoration: none;
         }
         .footermenu a{
@@ -345,11 +341,11 @@
             color: white;
         }
         .details{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
+           
             display: block;
         }
         .details2{
@@ -400,7 +396,7 @@
             color: goldenrod;
         }
         .main{
-            background-image: url(../images/i1.jpg);
+            background-image: url(../images/indexbanner2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             height: 200px;
@@ -418,7 +414,7 @@
         .products{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr ;
-            margin-left: 20px;
+          
             
         }
         .footermenu a{
@@ -426,16 +422,16 @@
             color: white;
         }
         .details{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
+            
            
             display: none;
         }
         .details2{
-            background-image: url(../images/pxfuel.jpg);
+            background-image: url(../images/indexbanner1.jpg);
             height: 500px;
             background-repeat: no-repeat;
             background-size: cover;

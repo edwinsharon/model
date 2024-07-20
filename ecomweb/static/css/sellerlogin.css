@@ -4,3 +4,12 @@ body{
     background-size: cover;
     width: 100%;
     }
+
+
+.loginimg{
+    border-radius: 50%;
+    margin-left: 43%;
+}    
+.title{
+    margin-left: 40%;
+}
