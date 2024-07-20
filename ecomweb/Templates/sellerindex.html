@@ -22,10 +22,11 @@
         <h1 class="p-5 col-4">SELLER INDEX</h1>
         <form action="{% url 'filtercategory' %}" method="post" class="col-2">
             {% csrf_token %}
+          
         <select name="category" id="category" class="btn btn-secondary  text-light category1 mt-5" >
         <option value="all">all</option>
         {% for category in categories %}
-        <option value="{{ category.id }}">{{ category.category }}<a href="{% url 'deletecat' category.pk %}" class="btn btn-danger"><i class="bi bi-trash3"></i></a></option>
+        <option value="{{ category.id }}">{{ category.category }}</option>
         {% endfor %}
         </select>
         <input type="submit" value="Apply" class="btn btn-primary mt-5">
@@ -33,7 +34,7 @@
         <a href="{% url 'addproduct' %}" class="col-3 p-5"><button class="btn btn-primary btn">ADD PRODUCT</button></a>
         <form action="{% url 'addcategory' %}" method="post" class="col-3 p-3 mt-4">
             {% csrf_token %}
-        <input type="text"  height="2px" name="category" placeholder="add category">
+        <input type="text"  height="2px" name="category" placeholder="add category" class="w-50 mt-2">
         <input type="submit" value="Add" class="btn btn-success">
         {% if messages %}
    <ul class="messages">
