@@ -302,3 +302,10 @@ def searchpro(request):
 
 
 
+# def conditioncheck(request):
+#     if request.POST:
+#         condition=request.POST.get("check")
+#         if check == ''
+
+
+
