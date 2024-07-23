@@ -22,7 +22,7 @@ urlpatterns = [
     path('filtercategory/',views.filtercategory,name="filtercategory"),
     path('deletecat/<int:pk>', views.deletecat, name='deletecat'),
     path('searchpro/',views.searchpro,name="searchpro"),
-    path('conditioncheck/<int:pk>/',views.conditioncheck,name="conditioncheck")
+
     
     
 ]

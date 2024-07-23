@@ -5,6 +5,7 @@
 .cardimage{
     height: 300px;
     width: 260px;
+    object-fit: contain;
 }
 .navitem a{
 text-decoration: none;

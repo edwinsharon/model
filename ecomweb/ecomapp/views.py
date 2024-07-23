@@ -287,7 +287,7 @@ def filtercategory(request):
 def deletecat(request,pk):
     catobj=Categories.objects.get(pk=pk)
     catobj.delete()
-    return redirect("sellerindex")
+    return redirect("addproduct")
 
 def searchpro(request):
     categories = Categories.objects.all()
@@ -303,14 +303,6 @@ def searchpro(request):
 
 
 
-def conditioncheck(request, pk):
-    if request.method == 'POST':
-        condition = request.POST.get('check')
-        if condition == 'delete':
-            return redirect('deletecat', pk=pk)
-        elif condition == 'apply':
-            return redirect('filtercategory', pk=pk)
-    
-    return redirect('sellerindex')
+
 
 

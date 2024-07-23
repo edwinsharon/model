@@ -1,10 +1,10 @@
-/* body{
+body{
     background-image: url( ../images/anyback.avif );
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     background-attachment: fixed;
-    } */
+    }
     .image{
         height:25%;
         width: 50%;
