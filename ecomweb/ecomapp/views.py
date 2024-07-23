@@ -302,10 +302,15 @@ def searchpro(request):
 
 
 
-# def conditioncheck(request):
-#     if request.POST:
-#         condition=request.POST.get("check")
-#         if check == ''
 
+def conditioncheck(request, pk):
+    if request.method == 'POST':
+        condition = request.POST.get('check')
+        if condition == 'delete':
+            return redirect('deletecat', pk=pk)
+        elif condition == 'apply':
+            return redirect('filtercategory', pk=pk)
+    
+    return redirect('sellerindex')
 
 
