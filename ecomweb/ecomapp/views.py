@@ -260,16 +260,14 @@ def productsdisplay(request,pk):
 
 def addcategory(request):
     if request.method == 'POST':
-        print("hai")
         category_name = request.POST.get("category")
-        seller = request.user
-        print(seller)  
+        seller = request.user 
         new_category = Categories(category=category_name, seller=seller)
         new_category.save()
         
         messages.success(request, 'Category added successfully!')
-        return redirect('sellerindex') 
-    return render(request, 'sellerindex.html')
+        return redirect('addproduct') 
+    return render(request, 'addpro.html')
 def filtercategory(request):
     categories = Categories.objects.all()
     if request.method == 'POST':
@@ -296,8 +294,9 @@ def searchpro(request):
         searchitem=request.POST.get("searchitem")
         if searchitem=="":
             return redirect('index')
-        products = product.objects.filter(productname=searchitem)
-        return render(request,'index.html',{"products":products,'categories': categories})
+        else:
+            products = product.objects.filter(productname=searchitem)
+            return render(request,'index.html',{"products":products,'categories': categories})
     return redirect(request, 'index')
 
 

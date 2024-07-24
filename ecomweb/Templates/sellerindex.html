@@ -19,8 +19,13 @@
     </div>
     <div class="container  mt-5 opacity-75 text-light">
         <div class="row">
-        <h1 class="p-5 col-2">SELLER INDEX</h1>
-        <form action="{% url 'filtercategory' %}" method="post" class="col-4">
+        <h1 class="p-5 col-4">SELLER INDEX</h1>
+        <div class="col-3"></div>
+
+
+        
+
+        <form action="{% url 'filtercategory' %}" method="post" class="col-2">
             {% csrf_token %}
             <select name="category" id="category" class="btn btn-secondary text-light category1 mt-5">
                 <option value="all">All</option>
@@ -32,28 +37,16 @@
         </form>
         
         
-        <a href="{% url 'addproduct' %}" class="col-2 p-5"><button class="btn btn-primary btn">ADD PRODUCT</button></a>
-        <form action="{% url 'addcategory' %}" method="post" class="col-4 p-3 mt-4">
-            {% csrf_token %}
-        <input type="text"  height="2px" name="category" placeholder="add category" class="w-50 mt-1">
-        <input type="submit" value="Add" class="btn btn-success">
-        {% if messages %}
-   <ul class="messages">
-       {% for message in messages %}
-           <li class="{{ message.tags }} text-light">{{ message }}</li>
-       {% endfor %}
-   </ul>
-   {% endif %}
-        </form>
+        <a href="{% url 'addproduct' %}" class="col-3 p-5"><button class="btn btn-primary btn">ADD PRODUCT</button></a>
     
         </div>
         
             {% for product in products %}
-            <div class="bg-white text-black p-5 m-3 rounded shadow-lg">
+            <div class="bg-black text-light p-5 m-3 rounded shadow-lg">
                 
             <div class="row">
-                <img src="{{ product.image.url }}"  alt="image" class="col shadow-lg w-25 image rounded">
-                <div class="col mt-5 ms-5">
+                <img src="{{ product.image.url }}"  alt="image" class="col shadow-lg w-25 image rounded ">
+                <div class="col mt-5 ms-5 bg-black">
                     <h1 >{{ product.productname|upper }}</h1>
                     <h4>PRIZE</h4>
                     <h4>OFFER</h4>
@@ -68,7 +61,7 @@
                 <h4>:{{ product.speed }}</h4>
             <h4>:{{ product.color }}</h4>
                    
-                    <h4>:{{ product.categories }}</h4>
+                    <h4>:{{ product.category.category }}</h4>
                     
                 <h3>:{{ product.description }}</h3>
             </div>
